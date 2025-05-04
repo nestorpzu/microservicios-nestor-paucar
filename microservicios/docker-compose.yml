@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  servicio1:
+    build: ./servicio1
+    container_name: servicio1
+    ports:
+      - "5000:5000"
+    networks:
+      - red_micro
+
+  servicio2:
+    build: ./servicio2
+    container_name: servicio2
+    ports:
+      - "5001:5001"
+    networks:
+      - red_micro
+
+  servicio3:
+    build: ./servicio3
+    container_name: servicio3
+    ports:
+      - "5002:5002"
+    networks:
+      - red_micro
+
+  servicio4:
+    build: ./servicio4
+    container_name: servicio4
+    ports:
+      - "5003:5003"
+    depends_on:
+      - servicio1
+      - servicio2
+      - servicio3
+    networks:
+      - red_micro
+
+networks:
+  red_micro:
+    driver: bridge
